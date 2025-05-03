@@ -404,7 +404,7 @@
 				DEVELOPMENT_TEAM = 9A59WNP3LR;
 				ENABLE_BITCODE = NO;
 				FLUTTER_BUILD_NAME = 2.0.1;
-				FLUTTER_BUILD_NUMBER = 12
+				FLUTTER_BUILD_NUMBER = 12;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/AppAuth/AppAuth.framework/Headers\"",
@@ -641,7 +641,7 @@
 				DEVELOPMENT_TEAM = 9A59WNP3LR;
 				ENABLE_BITCODE = NO;
 				FLUTTER_BUILD_NAME = 2.0.1;
-				FLUTTER_BUILD_NUMBER = 12
+				FLUTTER_BUILD_NUMBER = 12;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/AppAuth/AppAuth.framework/Headers\"",
@@ -766,7 +766,7 @@
 				DEVELOPMENT_TEAM = 9A59WNP3LR;
 				ENABLE_BITCODE = NO;
 				FLUTTER_BUILD_NAME = 2.0.1;
-				FLUTTER_BUILD_NUMBER = 12
+				FLUTTER_BUILD_NUMBER = 12;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/AppAuth/AppAuth.framework/Headers\"",
