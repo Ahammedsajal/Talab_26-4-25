@@ -6,9 +6,9 @@ import 'package:Talab/data/cubits/category/fetch_category_cubit.dart';
 import 'package:Talab/ui/theme/theme.dart';
 import 'package:Talab/utils/ui_utils.dart';
 import 'package:Talab/app/routes.dart';
-
-
-
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:Talab/ui/screens/home/widgets/category_home_card.dart';
+import 'package:Talab/ui/screens/widgets/errors/no_data_found.dart';  
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
@@ -36,7 +36,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';             //  UiUtils.getSvg(
  * Toggle between them with two icon buttons.
  * ──────────────────────────────────────────────────────────────────────────*/
 
-enum _ViewMode { horizontal, expanded }
+enum _ViewMode { horizontal, expanded, staggered }
 
 class CategoryWidgetHome extends StatefulWidget {
   const CategoryWidgetHome({super.key});
@@ -73,13 +73,15 @@ class _CategoryWidgetHomeState extends State<CategoryWidgetHome> {
                       arguments: {"from": Routes.home},
                     ),
                   )
-                : _AccordionGrid(
+                : _mode == _ViewMode.expanded
+                ? _AccordionGrid(
                     categories: state.categories,
                     expanded: _expanded,
                     onToggle: (id) => setState(() {
                       _expanded[id] = !(_expanded[id] ?? false);
                     }),
-                  );
+                  )
+                : _StaggeredGridView(categories: state.categories);
           },
         ),
       ],
@@ -95,20 +97,28 @@ class _CategoryWidgetHomeState extends State<CategoryWidgetHome> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           IconButton(
-            tooltip: 'Ribbon view',
-            icon: Icon(Icons.view_stream,
-                color: _mode == _ViewMode.horizontal
-                    ? context.color.territoryColor
-                    : context.color.iconColor),
-            onPressed: () => setState(() => _mode = _ViewMode.horizontal),
-          ),
-          IconButton(
             tooltip: 'Grid view',
             icon: Icon(Icons.grid_view_rounded,
                 color: _mode == _ViewMode.expanded
                     ? context.color.territoryColor
                     : context.color.iconColor),
             onPressed: () => setState(() => _mode = _ViewMode.expanded),
+          ),
+          IconButton(
+            tooltip: 'Staggered view',
+            icon: Icon(Icons.view_agenda,
+                color: _mode == _ViewMode.staggered
+                    ? context.color.territoryColor
+                    : context.color.iconColor),
+            onPressed: () => setState(() => _mode = _ViewMode.staggered),
+          ),
+          IconButton(
+            tooltip: 'Ribbon view',
+            icon: Icon(Icons.view_stream,
+                color: _mode == _ViewMode.horizontal
+                    ? context.color.territoryColor
+                    : context.color.iconColor),
+            onPressed: () => setState(() => _mode = _ViewMode.horizontal),
           ),
         ],
       ),
@@ -370,6 +380,77 @@ class _AccordionGrid extends StatelessWidget {
             ],
           );
         },
+      ),
+    );
+  }
+}
+
+/* ────────────────────────  STAGGERED GRID VIEW  ──────────────────────────*/
+
+class _StaggeredGridView extends StatelessWidget {
+  final List<CategoryModel> categories;
+
+  const _StaggeredGridView({required this.categories});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: MasonryGridView.count(
+        crossAxisCount: 2,
+        itemCount: categories.length,
+        itemBuilder: (BuildContext context, int index) {
+          final cat = categories[index];
+          return GestureDetector(
+            onTap: () {
+              if (cat.children?.isNotEmpty ?? false) {
+                Navigator.pushNamed(context, Routes.subCategoryScreen, arguments: {
+                  'categoryList': cat.children,
+                  'catName': cat.name,
+                  'catId': cat.id,
+                  'categoryIds': [cat.id.toString()]
+                });
+              } else {
+                Navigator.pushNamed(context, Routes.itemsList, arguments: {
+                  'catID': cat.id.toString(),
+                  'catName': cat.name,
+                  'categoryIds': [cat.id.toString()]
+                });
+              }
+            },
+            child: Card(
+              elevation: 4,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+                    child: Image.network(
+                      cat.url!,
+                      fit: BoxFit.cover,
+                      height: index % 2 == 0 ? 150 : 200,
+                      width: double.infinity,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      cat.name!,
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+        mainAxisSpacing: 8.0,
+        crossAxisSpacing: 8.0,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
       ),
     );
   }
