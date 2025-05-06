@@ -305,7 +305,7 @@ class LoginScreenState extends State<LoginScreen> {
                           .read<UserDetailsCubit>()
                           .fill(HiveUtils.getUserDetails());
                       if (state.isProfileCompleted) {
-HiveUtils.setUserIsAuthenticated(true);
+                   HiveUtils.setUserIsAuthenticated(true);
                      // …we just jump straight to home:
                      HelperUtils.killPreviousPages(
                        context, Routes.main, {"from": "login"});
