@@ -41,17 +41,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     List slidersList = [
       {
-        'svg': "assets/svg/Illustrators/onbo_a.svg",
+        'svg': "assets/svg/Illustrators/onbo_.svg",
         'title': "onboarding_1_title".translate(context),
         'description': "onboarding_1_des".translate(context),
       },
       {
-        'svg': "assets/svg/Illustrators/onbo_b.svg",
+        'svg': "assets/svg/Illustrators/onbo_.svg",
         'title': "onboarding_2_title".translate(context),
         'description': "onboarding_2_des".translate(context),
       },
       {
-        'svg': "assets/svg/Illustrators/onbo_c.svg",
+        'svg': "assets/svg/Illustrators/onbo_.svg",
         'title': "onboarding_3_title".translate(context),
         'description': "onboarding_3_des".translate(context),
       },
