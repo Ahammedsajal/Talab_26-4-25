@@ -305,17 +305,11 @@ class LoginScreenState extends State<LoginScreen> {
                           .read<UserDetailsCubit>()
                           .fill(HiveUtils.getUserDetails());
                       if (state.isProfileCompleted) {
-                        HiveUtils.setUserIsAuthenticated(true);
-                        if (HiveUtils.getCityName() != null &&
-                            HiveUtils.getCityName() != "") {
-                          HelperUtils.killPreviousPages(
-                              context, Routes.main, {"from": "login"});
-                        } else {
-                          Navigator.of(context).pushNamedAndRemoveUntil(
-                              Routes.locationPermissionScreen,
-                              (route) => false);
-                        }
-                      } else {
+HiveUtils.setUserIsAuthenticated(true);
+                     // …we just jump straight to home:
+                     HelperUtils.killPreviousPages(
+                       context, Routes.main, {"from": "login"});
+                 } else {
                         Navigator.pushNamed(
                           context,
                           Routes.completeProfile,
