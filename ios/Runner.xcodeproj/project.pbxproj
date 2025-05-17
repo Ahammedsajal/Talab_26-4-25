@@ -403,8 +403,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9A59WNP3LR;
 				ENABLE_BITCODE = NO;
-				FLUTTER_BUILD_NAME = 2.0.1;
-				FLUTTER_BUILD_NUMBER = 15;
+				FLUTTER_BUILD_NAME = 2.0.2;
+				FLUTTER_BUILD_NUMBER = 1;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/AppAuth/AppAuth.framework/Headers\"",
@@ -640,8 +640,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9A59WNP3LR;
 				ENABLE_BITCODE = NO;
-				FLUTTER_BUILD_NAME = 2.0.1;
-				FLUTTER_BUILD_NUMBER = 15;
+				FLUTTER_BUILD_NAME = 2.0.2;
+				FLUTTER_BUILD_NUMBER = 1;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/AppAuth/AppAuth.framework/Headers\"",
@@ -765,8 +765,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9A59WNP3LR;
 				ENABLE_BITCODE = NO;
-				FLUTTER_BUILD_NAME = 2.0.1;
-				FLUTTER_BUILD_NUMBER = 15;
+				FLUTTER_BUILD_NAME = 2.0.2;
+				FLUTTER_BUILD_NUMBER = 1;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/AppAuth/AppAuth.framework/Headers\"",
